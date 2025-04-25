@@ -1,12 +1,10 @@
 import java.util.*;
-
 public class LinkShortener {
     private final Map<String, String> shortToLong;
     private final Map<String, String> longToShort;
     private final String baseUrl;
     private final String characters;
     private final int codeLength;
-
     public LinkShortener() {
         shortToLong = new HashMap<>();
         longToShort = new HashMap<>();
@@ -14,7 +12,6 @@ public class LinkShortener {
         characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         codeLength = 6;
     }
-
     private String generateCode() {
         StringBuilder code = new StringBuilder();
         Random random = new Random();
@@ -23,7 +20,6 @@ public class LinkShortener {
         }
         return code.toString();
     }
-
     public String shortenURL(String longURL) {
         if (longToShort.containsKey(longURL)) {
             return baseUrl + longToShort.get(longURL);
@@ -36,7 +32,6 @@ public class LinkShortener {
         longToShort.put(longURL, code);
         return baseUrl + code;
     }
-
     public String expandURL(String shortURL) {
         if (!shortURL.startsWith(baseUrl)) {
             return "Invalid short URL format.";
@@ -44,7 +39,6 @@ public class LinkShortener {
         String code = shortURL.replace(baseUrl, "");
         return shortToLong.getOrDefault(code, "Short URL not found.");
     }
-
     public void startCLI() {
         Scanner scanner = new Scanner(System.in);
         while (true) {
@@ -74,7 +68,6 @@ public class LinkShortener {
             }
         }
     }
-
     public static void main(String[] args) {
         LinkShortener app = new LinkShortener();
         app.startCLI();
